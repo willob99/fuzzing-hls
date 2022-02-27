@@ -180,7 +180,8 @@ int modify()
 
         if (strstr(str, "include") != NULL && foundInc == 0)
         {
-            strcpy(final_printOut, "#include \"D:\\csmith-2.3.0\\runtime\\csmith.h\"");
+            printf("#include \"C:\\intelFPGA_pro\\21.4\\hls\\include\\HLS\\hls.h\"\n");
+            strcpy(final_printOut, "#include \"C:\\csmith\\runtime\\csmith.h\"");
             printf("%s\n", final_printOut);
             changed = 1;
         }

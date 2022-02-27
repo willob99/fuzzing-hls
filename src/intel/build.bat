@@ -30,6 +30,7 @@ for %%I in (i++.exe) do (
   set "HLS_INSTALL_DIR=%%~dp$PATH:I"
 )
 set "HLS_INSTALL_DIR=%HLS_INSTALL_DIR%.."
+echo HLS_INSTALL_DIR: %HLS_INSTALL_DIR%
 
 :: Set up the compile variables
 if "%TARGET%" == "test-x86-64" (
@@ -38,7 +39,9 @@ if "%TARGET%" == "test-x86-64" (
   set "LFLAGS=-o %TARGET%.exe"
 ) else if "%TARGET%" == "test-fpga" (
   set "CXX=i++"
-  set "CXXFLAGS=%HLS_CXX_FLAGS% -march=Arria10
+  @REM Arria10 is not supported by default, so target CycloneV
+  @REM set "CXXFLAGS=%HLS_CXX_FLAGS% -march=Arria10"
+  set "CXXFLAGS=%HLS_CXX_FLAGS% -march=CycloneV --simulator none"
   set "LFLAGS=-o %TARGET%.exe"
 ) else if "%TARGET%" == "test-msvc" (
   set "CXX=cl"
